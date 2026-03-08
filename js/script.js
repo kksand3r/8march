@@ -4,7 +4,6 @@ bgMusic.volume = 0.04;
 
 const startTime = 39; 
 const endTime = 55;   
-const duration = endTime - startTime;
 
 bgMusic.currentTime = startTime;
 
@@ -25,7 +24,6 @@ function createPetals() {
 }
 
 const playBtn = document.getElementById('playBtn');
-const progressBar = document.getElementById('progressBar');
 
 playBtn.addEventListener('click', function() {
     if (bgMusic.paused) {
@@ -42,11 +40,6 @@ bgMusic.addEventListener('timeupdate', function() {
         bgMusic.pause();
         bgMusic.currentTime = startTime; 
         playBtn.classList.remove('playing');
-    }
-
-    const currentProgress = ((bgMusic.currentTime - startTime) / duration) * 100;
-    if (currentProgress >= 0) {
-        progressBar.style.width = currentProgress + '%';
     }
 });
 

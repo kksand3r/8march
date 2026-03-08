@@ -80,13 +80,6 @@ body, html {
     animation: popBloom 0.6s cubic-bezier(0.17, 0.67, 0.83, 1.2) calc(var(--delay) + 0.6s) forwards;
 }
 
-@keyframes growStem { to { transform: scaleY(1); } }
-@keyframes popBloom {
-    0% { opacity: 0; transform: scale(0) translateY(10px); }
-    70% { transform: scale(1.2) translateY(-5px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
-}
-
 .date-tag {
     background: var(--accent-color);
     color: white;
@@ -122,16 +115,6 @@ body, html {
     animation: fadeIn 1s ease forwards 2.1s;
 }
 
-.signature {
-    font-weight: 400;
-    color: var(--text-dark);
-    margin-bottom: 30px;
-    opacity: 0;
-    animation: fadeIn 1s ease forwards 2.4s;
-}
-
-@keyframes fadeIn { to { opacity: 1; } }
-
 .play-trigger {
     width: 80px;
     height: 80px;
@@ -156,7 +139,6 @@ body, html {
     border-bottom: 15px solid transparent;
     border-left: 25px solid var(--accent-color);
     margin-left: 8px;
-    transition: all 0.2s ease;
 }
 
 .play-trigger.playing .play-icon {
@@ -166,20 +148,28 @@ body, html {
     border-left: 7px solid var(--accent-color);
     border-right: 7px solid var(--accent-color);
     margin-left: 0;
-    background: transparent;
 }
 
-.card-footer { padding-bottom: 30px; }
-.footer-text { text-align: center; font-size: 0.8rem; color: rgba(0,0,0,0.4); margin-bottom: 20px; }
-.progress-track { width: 100%; height: 4px; background: rgba(255, 255, 255, 0.4); border-radius: 2px; }
-
-.progress-fill { 
-    width: 0%; 
-    height: 100%; 
-    background: white; 
-    border-radius: 2px;
-    transition: width 0.1s linear; 
+.card-footer {
+    padding-bottom: 20px;
 }
+
+.footer-text { 
+    text-align: center; 
+    font-size: 1rem;
+	color: var(--text-dark);
+    font-style: italic;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 3s; 
+}
+
+@keyframes growStem { to { transform: scaleY(1); } }
+@keyframes popBloom {
+    0% { opacity: 0; transform: scale(0) translateY(10px); }
+    70% { transform: scale(1.2) translateY(-5px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes fadeIn { to { opacity: 1; } }
 
 .petal {
     position: absolute;
@@ -197,24 +187,8 @@ body, html {
 }
 
 @media (min-width: 768px) {
-    .card-content {
-        max-width: 850px; 
-    }
-
-    .message {
-        max-width: 650px; 
-        font-size: 1.2rem; 
-    }
-
-    .title {
-        font-size: 4rem; 
-    }
-
-    .bloom {
-        font-size: 4.5rem; 
-    }
-
-    .signature {
-        font-size: 1.3rem;
-    }
+    .card-content { max-width: 850px; }
+    .message { max-width: 650px; font-size: 1.2rem; }
+    .title { font-size: 4rem; }
+    .bloom { font-size: 4.5rem; }
 }
