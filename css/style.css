@@ -1,0 +1,220 @@
+:root {
+    --bg-gradient: linear-gradient(180deg, #fce4ec 0%, #f8bbd0 100%);
+    --accent-color: #d81b60;
+    --text-dark: #4a4a4a;
+    --stem-color: #81c784;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg-gradient);
+}
+
+.full-screen-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.card-content {
+    width: 100%;
+    height: 100%;
+    max-width: 800px; 
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+}
+
+.main-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.flowers-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 15px;
+    height: 120px;
+    margin-bottom: 25px;
+}
+
+.flower-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stem {
+    width: 3px;
+    height: 60px;
+    background: var(--stem-color);
+    border-radius: 2px;
+    transform-origin: bottom;
+    transform: scaleY(0);
+    animation: growStem 1s ease-out var(--delay) forwards;
+}
+
+.bloom {
+    font-size: 3.5rem;
+    line-height: 1;
+    opacity: 0;
+    transform: scale(0);
+    animation: popBloom 0.6s cubic-bezier(0.17, 0.67, 0.83, 1.2) calc(var(--delay) + 0.6s) forwards;
+}
+
+@keyframes growStem { to { transform: scaleY(1); } }
+@keyframes popBloom {
+    0% { opacity: 0; transform: scale(0) translateY(10px); }
+    70% { transform: scale(1.2) translateY(-5px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.date-tag {
+    background: var(--accent-color);
+    color: white;
+    padding: 6px 24px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 1.5s;
+}
+
+.title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: var(--text-dark);
+    line-height: 1.2;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 1.8s;
+}
+
+.highlight { color: var(--accent-color); }
+
+.message {
+    margin: 20px 0;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #555;
+    max-width: 320px; 
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 2.1s;
+}
+
+.signature {
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 2.4s;
+}
+
+@keyframes fadeIn { to { opacity: 1; } }
+
+.play-trigger {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(216, 27, 96, 0.2);
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 2.7s;
+}
+
+.play-trigger:hover { transform: scale(1.05); }
+
+.play-icon {
+    width: 0; height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 25px solid var(--accent-color);
+    margin-left: 8px;
+    transition: all 0.2s ease;
+}
+
+.play-trigger.playing .play-icon {
+    width: 22px;
+    height: 25px;
+    border: none;
+    border-left: 7px solid var(--accent-color);
+    border-right: 7px solid var(--accent-color);
+    margin-left: 0;
+    background: transparent;
+}
+
+.card-footer { padding-bottom: 30px; }
+.footer-text { text-align: center; font-size: 0.8rem; color: rgba(0,0,0,0.4); margin-bottom: 20px; }
+.progress-track { width: 100%; height: 4px; background: rgba(255, 255, 255, 0.4); border-radius: 2px; }
+
+.progress-fill { 
+    width: 0%; 
+    height: 100%; 
+    background: white; 
+    border-radius: 2px;
+    transition: width 0.1s linear; 
+}
+
+.petal {
+    position: absolute;
+    background-color: #ffcdd2;
+    border-radius: 150% 0 150% 0;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 1;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10vh) rotate(0deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
+}
+
+@media (min-width: 768px) {
+    .card-content {
+        max-width: 850px; 
+    }
+
+    .message {
+        max-width: 650px; 
+        font-size: 1.2rem; 
+    }
+
+    .title {
+        font-size: 4rem; 
+    }
+
+    .bloom {
+        font-size: 4.5rem; 
+    }
+
+    .signature {
+        font-size: 1.3rem;
+    }
+}
